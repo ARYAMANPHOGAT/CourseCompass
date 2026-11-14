@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-10-28T19:24:35+00:00",
+  "dataset": {
+    "label": "SYNTHETIC demo cohort - not real student behaviour",
+    "synthetic": true,
+    "users_total": 150,
+    "users_evaluated": 150,
+    "users_excluded_too_few_positives": 0,
+    "test_items": 301,
+    "train_interactions": 928,
+    "catalog_size": 184
+  },
+  "protocol": {
+    "split": "per-user random hold-out of 25% of positive items (min 1), seed 7",
+    "min_positives": 4,
+    "ks": [
+      5,
+      10
+    ],
+    "relevance": "binary: held-out positive interaction",
+    "aggregation": "macro-average over evaluated learners; std and 95% normal interval reported",
+    "leakage_control": "CF re-trained on training interactions only; training items removed from candidates",
+    "ties": "broken by course id"
+  },
+  "methods": {
+    "popularity": "Most-interacted courses in the training data (non-personalised baseline)",
+    "content_cold_start": "TF-IDF + preference scoring from the onboarding profile only",
+    "content": "TF-IDF + preference scoring with Rocchio feedback from training interactions",
+    "collaborative": "Item-kNN collaborative filtering only",
+    "hybrid": "Preference score blended with item-kNN (confidence-weighted)"
+  },
+  "results": {
+    "popularity": {
+      "precision@5": {
+        "mean": 0.0453,
+        "std": 0.0931,
+        "ci95": 0.0149,
+        "n": 150
+      },
+      "recall@5": {
+        "mean": 0.1211,
+        "std": 0.2604,
+        "ci95": 0.0417,
+        "n": 150
+      },
+      "ndcg@5": {
+        "mean": 0.0886,
+        "std": 0.1912,
+        "ci95": 0.0306,
+        "n": 150
+      },
+      "precision@10": {
+        "mean": 0.0387,
+        "std": 0.0577,
+        "ci95": 0.0092,
+        "n": 150
+      },
+      "recall@10": {
+        "mean": 0.2,
+        "std": 0.309,
+        "ci95": 0.0494,
+        "n": 150
+      },
+      "ndcg@10": {
+        "mean": 0.1197,
+        "std": 0.2009,
+        "ci95": 0.0321,
+        "n": 150
+      }
+    },
+    "content_cold_start": {
+      "precision@5": {
+        "mean": 0.1707,
+        "std": 0.1378,
+        "ci95": 0.0221,
+        "n": 150
+      },
+      "recall@5": {
+        "mean": 0.4356,
+        "std": 0.3496,
+        "ci95": 0.0559,
+        "n": 150
+      },
+      "ndcg@5": {
+        "mean": 0.3549,
+        "std": 0.2951,
+        "ci95": 0.0472,
+        "n": 150
+      },
+      "precision@10": {
+        "mean": 0.1067,
+        "std": 0.0748,
+        "ci95": 0.012,
+        "n": 150
+      },
+      "recall@10": {
+        "mean": 0.5344,
+        "std": 0.3609,
+        "ci95": 0.0578,
+        "n": 150
+      },
+      "ndcg@10": {
+        "mean": 0.3949,
+        "std": 0.2877,
+        "ci95": 0.046,
+        "n": 150
+      }
+    },
+    "content": {
+      "precision@5": {
+        "mean": 0.1747,
+        "std": 0.1377,
+        "ci95": 0.022,
+        "n": 150
+      },
+      "recall@5": {
+        "mean": 0.4444,
+        "std": 0.3463,
+        "ci95": 0.0554,
+        "n": 150
+      },
+      "ndcg@5": {
+        "mean": 0.371,
+        "std": 0.2992,
+        "ci95": 0.0479,
+        "n": 150
+      },
+      "precision@10": {
+        "mean": 0.1107,
+        "std": 0.0725,
+        "ci95": 0.0116,
+        "n": 150
+      },
+      "recall@10": {
+        "mean": 0.5611,
+        "std": 0.3526,
+        "ci95": 0.0564,
+        "n": 150
+      },
+      "ndcg@10": {
+        "mean": 0.4166,
+        "std": 0.2852,
+        "ci95": 0.0456,
+        "n": 150
+      }
+    },
+    "collaborative": {
+      "precision@5": {
+        "mean": 0.1453,
+        "std": 0.1388,
+        "ci95": 0.0222,
+        "n": 150
+      },
+      "recall@5": {
+        "mean": 0.3567,
+        "std": 0.3411,
+        "ci95": 0.0546,
+        "n": 150
+      },
+      "ndcg@5": {
+        "mean": 0.3013,
+        "std": 0.2984,
+        "ci95": 0.0478,
+        "n": 150
+      },
+      "precision@10": {
+        "mean": 0.1,
+        "std": 0.0794,
+        "ci95": 0.0127,
+        "n": 150
+      },
+      "recall@10": {
+        "mean": 0.4933,
+        "std": 0.3832,
+        "ci95": 0.0613,
+        "n": 150
+      },
+      "ndcg@10": {
+        "mean": 0.3541,
+        "std": 0.2968,
+        "ci95": 0.0475,
+        "n": 150
+      }
+    },
+    "hybrid": {
+      "precision@5": {
+        "mean": 0.1627,
+        "std": 0.1417,
+        "ci95": 0.0227,
+        "n": 150
+      },
+      "recall@5": {
+        "mean": 0.4011,
+        "std": 0.3444,
+        "ci95": 0.0551,
+        "n": 150
+      },
+      "ndcg@5": {
+        "mean": 0.3465,
+        "std": 0.3119,
+        "ci95": 0.0499,
+        "n": 150
+      },
+      "precision@10": {
+        "mean": 0.112,
+        "std": 0.0723,
+        "ci95": 0.0116,
+        "n": 150
+      },
+      "recall@10": {
+        "mean": 0.56,
+        "std": 0.3483,
+        "ci95": 0.0557,
+        "n": 150
+      },
+      "ndcg@10": {
+        "mean": 0.4081,
+        "std": 0.2883,
+        "ci95": 0.0461,
+        "n": 150
+      }
+    }
+  },
+  "hybrid_fallbacks_to_content": 0,
+  "comparison": {
+    "metric": "ndcg@10",
+    "mean_difference_hybrid_minus_content": -0.0085,
+    "users_hybrid_better": 48,
+    "users_content_better": 43,
+    "users_tied": 59,
+    "note": "Paired per-user comparison on the same held-out items. Synthetic data only."
+  },
+  "limitations": [
+    "The interaction data is SYNTHETIC (simulated learners), not real student behaviour.",
+    "The simulator used the same skill taxonomy as the content scorer, which favours content-based methods.",
+    "Offline ranking metrics do not measure learning outcomes, satisfaction or employment results.",
+    "Small sample: 150 evaluated learners and a 184-course catalog."
+  ]
+}

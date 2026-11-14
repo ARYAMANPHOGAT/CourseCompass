@@ -1,0 +1,36 @@
+{
+  "_comment": "CourseCompass AI recommender weights. Edit and restart the backend. Preference weights are renormalised over available components; see README 'Hybrid scoring formula'.",
+  "preference_weights": {
+    "content": 0.3,
+    "goal": 0.25,
+    "skill_fit": 0.1,
+    "difficulty": 0.12,
+    "duration": 0.1,
+    "budget": 0.08,
+    "quality": 0.05
+  },
+  "hybrid": {
+    "collaborative_weight_max": 0.3,
+    "full_confidence_interactions": 5,
+    "min_user_interactions": 2
+  },
+  "collaborative": {
+    "neighbors": 20,
+    "shrinkage": 5.0,
+    "min_item_support": 2
+  },
+  "rocchio": {
+    "alpha": 1.0,
+    "beta_positive": 0.6,
+    "gamma_negative": 0.4
+  },
+  "interaction_weights": {
+    "save": 1.0,
+    "enroll": 2.0,
+    "complete": 3.0,
+    "relevant": 2.0,
+    "irrelevant": -2.0,
+    "previously_studied": 2.0,
+    "rating_per_star_from_3": 1.0
+  }
+}

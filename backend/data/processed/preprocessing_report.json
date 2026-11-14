@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "source": "Coursera catalog snapshot (webautomation_coursera.csv)",
+    "source_file": "webautomation_coursera.csv",
+    "source_sha256": "9b7a3f3cd352a0ba9f75468cd5e98f53b2667ff52076bb3e21a9e9f85aea842b",
+    "pipeline_version": "1.0.0",
+    "generated_at": "2026-10-28T19:24:31+00:00",
+    "record_count": 184,
+    "is_sample": false,
+    "provenance_note": "Records were scraped from public Coursera catalog pages (timestamps July 2022) and distributed as webautomation_coursera.csv. Course text, ratings and links belong to Coursera and its partners. Redistribution terms of the CSV are not documented; use for private academic demonstration only and verify licensing before publishing."
+  },
+  "input_rows": 242,
+  "input_columns": [
+    "url",
+    "title",
+    "associated-university-institution-company",
+    "type",
+    "image",
+    "category-subject-area",
+    "certificate-is-available",
+    "description",
+    "duration",
+    "language",
+    "level",
+    "prerequisites",
+    "price",
+    "rating",
+    "syllabus",
+    "timestamp"
+  ],
+  "column_mapping": {
+    "url": "url",
+    "title": "title",
+    "provider": "associated_university_institution_company",
+    "content_type": "type",
+    "image": "image",
+    "category": "category_subject_area",
+    "certificate": "certificate_is_available",
+    "description": "description",
+    "duration": "duration",
+    "language": "language",
+    "level": "level",
+    "prerequisites": "prerequisites",
+    "price": "price",
+    "rating": "rating",
+    "review_count": null,
+    "syllabus": "syllabus",
+    "timestamp": "timestamp"
+  },
+  "missing_fields": [
+    "review_count"
+  ],
+  "placeholder_or_empty_values": {
+    "url": 0,
+    "title": 3,
+    "provider": 19,
+    "content_type": 1,
+    "image": 0,
+    "category": 4,
+    "certificate": 24,
+    "description": 20,
+    "duration": 20,
+    "language": 20,
+    "level": 55,
+    "prerequisites": 242,
+    "price": 20,
+    "rating": 21,
+    "syllabus": 90,
+    "timestamp": 0
+  },
+  "excluded_rows": [
+    {
+      "row": 29,
+      "reason": "category_listing_page_not_a_course",
+      "value": "https://www.coursera.org/browse/information-technology/networking"
+    },
+    {
+      "row": 98,
+      "reason": "missing_title",
+      "value": "https://www.coursera.org/specializations/business-technology-managment"
+    },
+    {
+      "row": 104,
+      "reason": "missing_title",
+      "value": "https://www.coursera.org/specializations/mathematics-for-data-science"
+    },
+    {
+      "row": 166,
+      "reason": "missing_title",
+      "value": "https://www.coursera.org/specializations/business-technology-managment"
+    }
+  ],
+  "excluded_count": 4,
+  "duplicate_rows_removed_exact": 54,
+  "duplicate_rows_merged_differing": 0,
+  "repeated_titles_kept_distinct": [],
+  "output_records": 184,
+  "by_content_type": {
+    "course": 112,
+    "specialization": 41,
+    "professional_certificate": 16,
+    "guided_project": 15
+  },
+  "by_level": {
+    "beginner": 102,
+    "missing": 44,
+    "intermediate": 34,
+    "advanced": 4
+  },
+  "by_price_status": {
+    "free": 164,
+    "unknown": 15,
+    "not_listed": 5
+  },
+  "by_duration_bucket": {
+    "medium": 91,
+    "extended": 54,
+    "missing": 15,
+    "short": 15,
+    "long": 9
+  },
+  "by_language": {
+    "English": 151,
+    "missing": 15,
+    "Indonesian": 8,
+    "Portuguese (Brazilian)": 4,
+    "Spanish": 4,
+    "Japanese, English": 1,
+    "Turkish": 1
+  },
+  "missing_after_cleaning": {
+    "provider": 10,
+    "category": 0,
+    "description": 15,
+    "level": 44,
+    "duration_bucket": 15,
+    "rating": 16,
+    "language": 15,
+    "syllabus_text": 57,
+    "image_url": 0,
+    "prerequisites": 184,
+    "review_count": 184
+  },
+  "courses_with_detected_skills": 179,
+  "content_type_derived_from_url": 0
+}

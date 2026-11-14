@@ -1,0 +1,163 @@
+@import "@fontsource-variable/unbounded";
+@import "@fontsource-variable/manrope";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   CourseCompass design tokens. Colours are RGB triplets so Tailwind can
+   apply opacity (bg-violet/20). Change a token here to restyle the app.
+   ------------------------------------------------------------------ */
+:root {
+  /* foundation: midnight black and deep charcoal */
+  --cc-midnight: 5 5 12;
+  --cc-abyss: 9 9 19;
+  --cc-charcoal: 17 17 28;
+  --cc-slate: 24 24 38;
+  --cc-graphite: 32 32 49;
+  --cc-line: 42 42 62;
+  --cc-line-strong: 62 62 90;
+
+  /* text */
+  --cc-ink: 238 237 247;
+  --cc-muted: 166 163 194;
+  --cc-faint: 132 129 160;
+
+  /* accents: electric violet (primary) and neon cyan (secondary) */
+  --cc-violet: 140 92 255;
+  --cc-violet-bright: 182 152 255;
+  --cc-violet-deep: 91 43 224;
+  --cc-cyan: 44 229 246;
+  --cc-cyan-deep: 15 181 201;
+
+  /* status */
+  --cc-mint: 74 222 168;
+  --cc-amber: 255 181 71;
+  --cc-rose: 255 94 134;
+
+  /* shape */
+  --cc-radius-sm: 8px;
+  --cc-radius-md: 12px;
+  --cc-radius-lg: 18px;
+  --cc-radius-xl: 28px;
+
+  /* depth and light */
+  --cc-shadow-surface: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 18px 40px -24px rgb(0 0 0 / 0.8);
+  --cc-shadow-lift: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 28px 60px -28px rgb(0 0 0 / 0.9);
+  --cc-glow-violet: 0 0 0 1px rgb(140 92 255 / 0.55), 0 0 32px -6px rgb(140 92 255 / 0.55);
+  --cc-glow-cyan: 0 0 0 1px rgb(44 229 246 / 0.5), 0 0 28px -8px rgb(44 229 246 / 0.5);
+
+  /* motion */
+  --cc-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cc-dur-fast: 140ms;
+  --cc-dur: 240ms;
+  --cc-dur-slow: 520ms;
+
+  /* layout */
+  --cc-rail: 248px;
+  --cc-gutter: clamp(16px, 4vw, 40px);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    background: rgb(var(--cc-midnight));
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-midnight font-sans text-base text-ink antialiased;
+    min-height: 100vh;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3 {
+    @apply font-display text-ink;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: rgb(var(--cc-violet) / 0.45);
+    color: rgb(var(--cc-ink));
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--cc-cyan));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  a {
+    @apply text-violet-bright underline-offset-4 hover:underline;
+  }
+  input, textarea, select {
+    @apply font-sans;
+  }
+  input[type="range"] {
+    accent-color: rgb(var(--cc-violet));
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--cc-line-strong)); border-radius: 999px; border: 2px solid rgb(var(--cc-midnight)); }
+  ::-webkit-scrollbar-track { background: transparent; }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-lg border border-line bg-charcoal shadow-surface;
+  }
+  .surface-raised {
+    @apply rounded-lg border border-line bg-slate shadow-lift;
+  }
+  .glass {
+    background: linear-gradient(180deg, rgb(var(--cc-slate) / 0.72), rgb(var(--cc-charcoal) / 0.6));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    @apply border border-white/10;
+  }
+  .field {
+    @apply w-full rounded-md border border-line bg-abyss px-3 py-2 text-sm text-ink placeholder:text-faint transition-colors duration-fast;
+  }
+  .field:focus {
+    @apply border-violet outline-none ring-2 ring-violet/40;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+  .hint {
+    @apply text-xs text-muted;
+  }
+  .page-title {
+    @apply font-display text-2xl font-semibold sm:text-3xl;
+  }
+  .section-title {
+    @apply font-display text-lg font-medium;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .grain {
+    background-image: radial-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgb(var(--cc-slate)) 0%, rgb(var(--cc-graphite)) 50%, rgb(var(--cc-slate)) 100%);
+  background-size: 200% 100%;
+  animation: cc-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes cc-shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
