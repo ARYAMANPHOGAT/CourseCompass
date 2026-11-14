@@ -21,6 +21,9 @@ backend/data/user/*
 backend/data/raw/*.csv
 
 # Local overrides and secrets
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
 frontend/.env.local
 .env.local
 *.local

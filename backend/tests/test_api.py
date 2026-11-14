@@ -37,6 +37,22 @@ def test_search_filter_sort_paginate(client):
     assert "categories" in client.get("/api/courses").json()["facets"]
 
 
+def test_course_detail_and_similar_courses(client):
+    course_id = "sql-for-data-science"
+    detail = client.get(f"/api/courses/{course_id}")
+    assert detail.status_code == 200
+    body = detail.json()
+    assert body["course"]["id"] == course_id
+    assert body["personalization"]["explanation"]["summary"]
+    assert body["link"]["validated"] is True
+
+    similar = client.get(f"/api/courses/{course_id}/similar", params={"limit": 3})
+    assert similar.status_code == 200
+    items = similar.json()["items"]
+    assert len(items) <= 3
+    assert all(item["course"]["id"] != course_id for item in items)
+
+
 def test_invalid_requests_return_clean_errors(client):
     r = client.get("/api/courses/does-not-exist")
     assert r.status_code == 404 and r.json()["error"]["code"] == "course_not_found"

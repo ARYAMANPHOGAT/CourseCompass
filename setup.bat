@@ -39,10 +39,25 @@ if errorlevel 1 (
   echo     then open a NEW terminal and run setup.bat again.
   goto :fail
 )
-for /f "tokens=1 delims=v." %%a in ('node -v') do set "NODE_MAJOR=%%a"
+for /f "tokens=1,2 delims=v." %%a in ('node -v') do (
+  set "NODE_MAJOR=%%a"
+  set "NODE_MINOR=%%b"
+)
 for /f "delims=" %%I in ('node -v') do set "NODE_VERSION=%%I"
 if !NODE_MAJOR! LSS 20 (
-  echo [X] Node.js !NODE_VERSION! is too old. Install Node.js 22 LTS or newer.
+  echo [X] Node.js !NODE_VERSION! is too old. Install Node.js 20.19+, 22.12+ or newer.
+  goto :fail
+)
+if !NODE_MAJOR! EQU 20 if !NODE_MINOR! LSS 19 (
+  echo [X] Node.js !NODE_VERSION! is too old. Install Node.js 20.19+, 22.12+ or newer.
+  goto :fail
+)
+if !NODE_MAJOR! EQU 21 (
+  echo [X] Node.js !NODE_VERSION! is not supported by Vite. Install Node.js 20.19+, 22.12+ or newer.
+  goto :fail
+)
+if !NODE_MAJOR! EQU 22 if !NODE_MINOR! LSS 12 (
+  echo [X] Node.js !NODE_VERSION! is too old. Install Node.js 20.19+, 22.12+ or newer.
   goto :fail
 )
 echo [OK] Node.js !NODE_VERSION!
